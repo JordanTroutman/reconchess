@@ -6,7 +6,7 @@ import csv
 
 STOCKFISH_ENV_VAR = 'STOCKFISH_EXECUTABLE'
 
-class PROJ5(Player):
+class AIPROJ5(Player):
     """
     TroutBot uses the Stockfish chess engine to choose moves. In order to run TroutBot you'll need to download
     Stockfish from https://stockfishchess.org/download/ and create an environment variable called STOCKFISH_EXECUTABLE
@@ -60,7 +60,7 @@ class PROJ5(Player):
         # Beginning
         if (self.turn == 0):
             return chess.B5
-        elif (self.turn==1)
+        elif (self.turn==1):
             return chess.G5
 
 
@@ -78,7 +78,7 @@ class PROJ5(Player):
         if (self.num_pieces < 7 or self.captured_num >= 16-7):
             if len(self.endgamePieces > 0 and not self.found_king):
                 possibleKing = self.endgamePieces.pop()
-                if (self.board.piece_at(possibleKing) == chess.KING)
+                if (self.board.piece_at(possibleKing) == chess.KING):
                     self.found_king = True
                     self.king_pos = possibleKing
                 return possibleKing
@@ -135,15 +135,14 @@ class PROJ5(Player):
     def handle_move_result(self, requested_move: Optional[chess.Move], taken_move: Optional[chess.Move],
                            captured_opponent_piece: bool, capture_square: Optional[Square]):
         # if a move was executed, apply it to our board
-        if captured_opponent_piece:
-            self.captured_opponent_piece += 1
+        if captured_opponent_piece == True:
+            self.captured_num += 1
 
         if taken_move is not None:
             self.board.push(taken_move)
 
     def handle_game_end(self, winner_color: Optional[Color], win_reason: Optional[WinReason],
                         game_history: GameHistory):
-        self.f.close()
         self.engine.quit()
 
 
